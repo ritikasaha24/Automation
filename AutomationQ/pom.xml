@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>QualityPointTech</groupId>
+  <artifactId>AutomationQ</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+   <properties>
+        <!--LOCAL_CHROME, LOCAL_FIREFOX, GRID_CHROME, GRID_FIREFOX-->
+<!--        <executionPlatformDefault>AWS_CHROME</executionPlatformDefault>-->
+        <executionPlatformDefault>LOCAL_CHROME</executionPlatformDefault>
+        <gridURLDefault>http://localhost:4444/wd/hub</gridURLDefault>
+        <apiHostDefault>localhost</apiHostDefault>
+        <applicationHostDefault>awswrkshpalb-1570520390.us-west-2.elb.amazonaws.com</applicationHostDefault>
+        <dashboardHostDefault>localhost</dashboardHostDefault>
+    </properties>
+    
+   <dependencies>
+   
+   <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+	<dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>3.141.59</version>
+    </dependency>
+     
+     <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-java</artifactId>
+    <version>5.7.0</version>
+</dependency>
+
+<dependency>
+    <groupId>org.apache.poi</groupId>
+    <artifactId>poi-ooxml</artifactId>
+    <version>4.1.2</version>
+</dependency>  
+
+<!-- https://mvnrepository.com/artifact/junit/junit -->
+<dependency>
+    <groupId>junit</groupId>
+    <artifactId>junit</artifactId>
+    <version>4.13</version>
+    <scope>test</scope>
+</dependency>
+  
+  <!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
+<dependency>
+    <groupId>io.cucumber</groupId>
+    <artifactId>cucumber-junit</artifactId>
+    <version>5.7.0</version>
+    <scope>test</scope>
+</dependency>
+
+ </dependencies>
+ <build>
+ 
+<plugins>
+ 
+<plugin>
+ 
+<groupId>org.apache.maven.plugins</groupId>
+<artifactId>maven-compiler-plugin</artifactId>
+<version>3.0</version>
+<configuration>
+<compilerVersion>1.8</compilerVersion>
+<source>1.8</source>
+<target>1.8</target>
+</configuration>
+</plugin>
+
+         <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M4</version>
+          <configuration>
+          <includes>
+          
+          	<exclude>**/*Runner.java</exclude>
+          
+          </includes>
+          <systemPropertyVariables>
+                        <executionPlatform>${executionPlatformDefault}</executionPlatform>
+                        <gridURL>${gridURLDefault}</gridURL>
+                        <apiHost>${apiHostDefault}</apiHost>
+                        <applicationHost>${applicationHostDefault}</applicationHost>
+                        <dashboardHost>${dashboardHostDefault}</dashboardHost>
+                    </systemPropertyVariables>
+          </configuration>
+        </plugin>
+</plugins>
+</build>
+</project>
